@@ -1,0 +1,31 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yusael.dao.UserDAO">
+
+    <!--保存用户-->
+    <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_user VALUES (#{id}, #{name}, #{age}, #{bir})
+    </insert>
+
+    <!--更新用户-->
+    <update id="update" parameterType="User">
+        UPDATE t_user
+        SET name=#{name}, age=#{age}, bir=#{bir}
+        WHERE id = #{id}
+    </update>
+
+    <!--查询所有-->
+    <select id="findAll" resultType="User">
+        SELECT id, name, age, bir FROM t_user
+    </select>
+
+    <!--删除用户-->
+    <delete id="delete" parameterType="String">
+        DELETE FROM t_user WHERE id = #{id}
+    </delete>
+
+    <!--根据Id查询用户-->
+    <select id="findById" parameterType="String" resultType="User">
+        SELECT id, name, age, bir FROM t_user WHERE id = #{id}
+    </select>
+
+</mapper>
